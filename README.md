@@ -11,6 +11,7 @@ The image size is approximately 28 MB
 
 # Supported tags
 
+-	[ `1.9.0` ](https://github.com/1science/docker-nginx/tree/1.9.0)
 -	[ `1.8.0` ](https://github.com/1science/docker-nginx/tree/1.8.0)
 -	[ `1.7.12` ](https://github.com/1science/docker-nginx/tree/1.7.12)
 
