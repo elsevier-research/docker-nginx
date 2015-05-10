@@ -1,0 +1,11 @@
+#!/bin/sh
+
+NGINX_CONF=/etc/nginx/nginx.conf
+
+if [ -f $NGINX_CONF ]; then
+   nginx -c $NGINX_CONF -t && \
+   echo "Running Nginx with configuration : "
+   exec nginx -c $NGINX_CONF -g "daemon off;"
+else
+   exec nginx -g "daemon off;"
+fi
