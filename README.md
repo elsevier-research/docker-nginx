@@ -7,11 +7,11 @@ Nginx (pronounced "engine-x") is an open source reverse proxy server for HTTP, H
 
 > [wikipedia.org/wiki/Nginx](https://en.wikipedia.org/wiki/Nginx)
 
-The image size is approximately 32 MB
+The image size is approximately 28 MB
 
 # Supported tags
 
--	[ `1.7.12`, `latest`](https://github.com/1science/docker-nginx/tree/1.7.12)
+-	[ `1.7.12` ](https://github.com/1science/docker-nginx/tree/1.7.12)
 
 # Usage
 
