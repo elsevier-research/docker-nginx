@@ -1,5 +1,5 @@
 #!/bin/sh
-
+set -x
 TEMPLATE=${NGINX_TEMPLATE:-/etc/consul-templates/nginx.conf}
 
 if [ -f $TEMPLATE ]; then
