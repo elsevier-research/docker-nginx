@@ -5,7 +5,7 @@
 FROM 1science/alpine:3.1
 MAINTAINER 1science Devops Team <devops@1science.org>
 
-ENV NGINX_VERSION 1.7.12
+ENV NGINX_VERSION 1.8.0
 
 # Build Nginx from source
 RUN apk-install openssl-dev pcre-dev zlib-dev wget build-base && \

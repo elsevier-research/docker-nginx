@@ -1,7 +1,7 @@
 #
 # Load balancer based on Nginx and Consul template
 #
-FROM 1science/nginx:1.7.12
+FROM 1science/nginx:1.8.0
 
 # Consul template version
 ENV CONSUL_TEMPLATE_VERSION=0.9.0
