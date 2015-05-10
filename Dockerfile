@@ -21,7 +21,9 @@ RUN apk-install openssl-dev pcre-dev zlib-dev wget build-base && \
     make && \
     make install && \
     apk del build-base && \
-    rm -rf /tmp/nginx-${NGINX_VERSION}
+    rm -rf /tmp/nginx-${NGINX_VERSION} && \
+    echo -ne "- with `nginx -v 2>&1`\n" >> /root/.built
+
 
 # forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
