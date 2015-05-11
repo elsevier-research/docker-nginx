@@ -1,10 +1,14 @@
 #!/bin/sh
+set -e
 
-CONSUL_URL=${$CONSUL_URL:-consul:8500}
+CONSUL_URL=${CONSUL_URL:-consul:8500}
 
-for template in `ls /etc/consul-templates`; do
-  echo "Reloading Nginx with configuration : /etc/nginx/conf.d/$template"
-  exec consul-template \
-       -consul=${CONSUL_URL} \
-       -template "/etc/consul-templates/$t:/etc/nginx/conf.d/$template:nginx -s reload"
-done
+if [ -d /etc/consul-templates ]; then
+    for TEMPLATE in `ls /etc/consul-templates/*.conf`; do
+      CONF="/etc/nginx/conf.d/`basename $TEMPLATE`"
+      exec consul-template \
+           -consul=${CONSUL_URL} \
+           -template "${TEMPLATE}:${CONF}:nginx -s reload"
+      echo "Reloading Nginx with configuration : $CONF"
+    done
+fi

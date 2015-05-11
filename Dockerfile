@@ -18,6 +18,7 @@ RUN apk-install openssl-dev pcre-dev zlib-dev wget build-base && \
         --conf-path=/etc/nginx/nginx.conf \
         --http-log-path=/var/log/nginx/access.log \
         --error-log-path=/var/log/nginx/error.log \
+        --pid-path=/var/run/nginx.pid \
         --sbin-path=/usr/sbin/nginx && \
     make && \
     make install && \
@@ -34,7 +35,7 @@ RUN ln -sf /dev/stderr /var/log/nginx/error.log
 # Add Nginx and Consul Template service
 ADD nginx.service /etc/service/nginx/run
 ADD consul-template.service /etc/service/consul-template/run
-ADD nginx.conf /etc/nginx/
+ADD nginx-sites.conf /etc/nginx/
 
 # Expose HTTP and HTTPS ports
 EXPOSE 80 443

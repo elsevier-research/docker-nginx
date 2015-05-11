@@ -15,6 +15,8 @@ lb:
     - 80:80
   volumes:
     - config:/etc/consul-templates
+  environment:
+    NGINX_CONF: /etc/nginx/nginx-sites.conf
 
 consul:
   command: -server -bootstrap -ui-dir /ui -advertise 10.0.2.15
