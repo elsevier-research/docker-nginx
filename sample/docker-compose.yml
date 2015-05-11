@@ -3,7 +3,7 @@ app:
   environment:
     SERVICE_80_NAME: http
     SERVICE_NAME: app
-    SERVICE_TAGS: production
+    SERVICE_TAGS: sample
   ports:
     - 80
 
