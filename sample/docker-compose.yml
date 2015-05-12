@@ -16,7 +16,7 @@ lb:
   ports:
     - 80:80
   volumes:
-    - config:/etc/consul-templates
+    - templates:/etc/consul-templates
   environment:
     NGINX_CONF: /etc/nginx/nginx-sites.conf
 
