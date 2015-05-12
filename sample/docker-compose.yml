@@ -1,12 +1,14 @@
+# Sample application
 app:
   image: tutum/hello-world:latest
   environment:
-    SERVICE_80_NAME: http
+    # Environment variables used by registrator to register services in consul
     SERVICE_NAME: app
     SERVICE_TAGS: sample
   ports:
     - 80
 
+# Nginx Load Balancer
 lb:
   image: 1science/nginx:1.9.0
   links:
@@ -18,6 +20,7 @@ lb:
   environment:
     NGINX_CONF: /etc/nginx/nginx-sites.conf
 
+# Consul & registrator for service discovery
 consul:
   command: -server -bootstrap -ui-dir /ui -advertise 10.0.2.15
   image: progrium/consul:latest
