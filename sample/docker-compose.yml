@@ -10,15 +10,13 @@ app:
 
 # Nginx Load Balancer
 lb:
-  image: 1science/nginx:1.9.0
+  build: .
   links:
     - consul
   ports:
     - 80:80
   volumes:
     - templates:/etc/consul-templates
-  environment:
-    NGINX_CONF: /etc/nginx/nginx-sites.conf
 
 # Consul & registrator for service discovery
 consul:

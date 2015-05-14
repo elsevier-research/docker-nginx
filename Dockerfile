@@ -35,7 +35,6 @@ RUN ln -sf /dev/stderr /var/log/nginx/error.log
 # Add Nginx and Consul Template service
 ADD nginx.service /etc/service/nginx/run
 ADD consul-template.service /etc/service/consul-template/run
-ADD nginx-sites.conf /etc/nginx/
 
 # Expose HTTP and HTTPS ports
 EXPOSE 80 443

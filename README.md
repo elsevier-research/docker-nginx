@@ -7,7 +7,7 @@ Nginx (pronounced "engine-x") is an open source reverse proxy server for HTTP, H
 
 > [wikipedia.org/wiki/Nginx](https://en.wikipedia.org/wiki/Nginx)
 
-The image size is approximately 28 MB
+The image size is approximately 38 MB
 
 # Supported tags
 
@@ -63,7 +63,7 @@ docker cp some-nginx:/etc/nginx/nginx.conf /some/nginx.conf
 As above, this can also be accomplished more cleanly using a simple `Dockerfile`:
 
 ```
-FROM nginx
+FROM 1science/nginx
 COPY nginx.conf /etc/nginx/nginx.conf
 ```
 
@@ -72,6 +72,11 @@ Then, build with `docker build -t some-custom-nginx .` and run:
 ```
 docker run --name some-nginx -d some-custom-nginx
 ```
+
+## Load Balancing
+
+The [sample application](sample) demonstrate how to achieve load balancing with Nginx, [Consul](https://www.consul.io/) and [Registrator](http://progrium.com/blog/2014/09/10/automatic-docker-service-announcement-with-registrator/).
+
 
 # License
 
