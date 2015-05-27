@@ -1,3 +1,4 @@
+[![](https://badge.imagelayers.io/1science/nginx:latest.svg)](https://imagelayers.io/?images=1science/nginx:latest 'Get your own badge on imagelayers.io')
 
 # What is Nginx?
 
