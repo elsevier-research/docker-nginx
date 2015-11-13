@@ -6,7 +6,7 @@ app:
     SERVICE_NAME: app
     SERVICE_TAGS: sample
   ports:
-    - 80
+    - 81:80
 
 # Nginx Load Balancer
 lb:
@@ -16,12 +16,12 @@ lb:
   ports:
     - 80:80
   volumes:
-    - templates:/etc/consul-templates
+    - ./templates:/etc/consul-templates
 
 # Consul & registrator for service discovery
 consul:
-  command: -server -bootstrap -ui-dir /ui -advertise 10.0.2.15
-  image: progrium/consul:latest
+  command: -ui-dir=/ui -bootstrap-expect 1
+  image: gliderlabs/consul-server:0.5
   ports:
     - 8300:8300
     - 8400:8400
@@ -30,7 +30,7 @@ consul:
 
 registrator:
   command: consul://consul:8500
-  image: progrium/registrator:latest
+  image: gliderlabs/registrator:v6
   links:
     - consul
   volumes:
