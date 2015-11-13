@@ -6,7 +6,7 @@ app:
     SERVICE_NAME: app
     SERVICE_TAGS: sample
   ports:
-    - 81:80
+    - 80
 
 # Nginx Load Balancer
 lb:
@@ -30,7 +30,7 @@ consul:
 
 registrator:
   command: consul://consul:8500
-  image: gliderlabs/registrator:v6
+  image: gliderlabs/registrator:latest
   links:
     - consul
   volumes:
