@@ -10,28 +10,21 @@ app:
 
 # Nginx Load Balancer
 lb:
-  build: .
-  links:
-    - consul
+  image: 1science/nginx:1.9.0-consul
   ports:
     - 80:80
   volumes:
     - ./templates:/etc/consul-templates
+  # Change this section to point on your Consul
+  environment:
+    CONSUL_URL: localhost:8500
+  net: "host"
 
-# Consul & registrator for service discovery
-consul:
-  command: -ui-dir=/ui -bootstrap-expect 1
-  image: gliderlabs/consul-server:0.5
-  ports:
-    - 8300:8300
-    - 8400:8400
-    - 8500:8500
-    - 8600:53/udp
-
+# Registrator to register on local Consul
 registrator:
-  command: consul://consul:8500
   image: gliderlabs/registrator:latest
-  links:
-    - consul
   volumes:
     - /var/run/docker.sock:/tmp/docker.sock
+  # Change this section to point on your Consul
+  command: consul://localhost:8500
+  net: "host"

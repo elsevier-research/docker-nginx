@@ -11,11 +11,13 @@ The following application demonstrate how to setup a dynamic load balancing with
 # How to use ?
 
 
-First of all you have to install [docker-compose](https://docs.docker.com/compose/install/) :
+First of all you have to install [Consul](https://www.consul.io/intro/getting-started/install.html) and [Consul UI](https://www.consul.io/downloads.html).
+
+
+Then you have to start Consul as an agent server on the docker host.
 
 ```
-curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul -ui-dir /usr/local/share/consul
 ```
 
 Then you can start the services :
