@@ -31,8 +31,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Add Nginx default config
-ADD config/nginx.conf /etc/nginx
-ADD config/default.conf /etc/nginx/conf.d
+ADD etc /etc
 
 # Expose HTTP and HTTPS ports
 EXPOSE 80 443
