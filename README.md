@@ -67,10 +67,11 @@ Then, build with `docker build -t some-custom-nginx .` and run:
 docker run --name some-nginx -d some-custom-nginx
 ```
 
-## Load Balancing
+## Dynamic configuration with Consul
 
-The [sample application](sample) demonstrate how to achieve load balancing with Nginx, [Consul](https://www.consul.io/) and [Registrator](http://progrium.com/blog/2014/09/10/automatic-docker-service-announcement-with-registrator/).
+Sometimes, it might be necessary to change the Nginx configuration dynamically for example to add hosts to achieve load balancing.
 
+To do that we've built an [image](consul) based on [Consul](https://consul.io/) and [Consul template](https://github.com/hashicorp/consul-template)
 
 # License
 
