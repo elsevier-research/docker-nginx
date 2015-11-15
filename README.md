@@ -9,12 +9,6 @@ Nginx (pronounced "engine-x") is an open source reverse proxy server for HTTP, H
 > [wikipedia.org/wiki/Nginx](https://en.wikipedia.org/wiki/Nginx)
 
 
-# Supported tags
-
--	[ `1.9.0` ](https://github.com/1science/docker-nginx/tree/1.9.0)
--	[ `1.8.0` ](https://github.com/1science/docker-nginx/tree/1.8.0)
--	[ `1.7.12` ](https://github.com/1science/docker-nginx/tree/1.7.12)
-
 # Usage
 
 ## Hosting some simple static content

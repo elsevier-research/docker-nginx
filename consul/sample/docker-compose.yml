@@ -10,7 +10,7 @@ app:
 
 # Nginx Load Balancer
 lb:
-  image: 1science/nginx:1.9.0-consul
+  image: 1science/nginx:1.9.6-consul
   ports:
     - 80:80
   volumes:

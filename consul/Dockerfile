@@ -1,7 +1,7 @@
 #
 # Nginx image with Consul Template
 #
-FROM 1science/nginx:1.9.0
+FROM 1science/nginx:1.9.6
 
 # Consul template and fileconsul for configuration management
 ENV S6_OVERLAY_VERSION=1.9.1.3 CONSUL_TEMPLATE_VERSION=0.11.0 FILECONSUL_VERSION=0.1.1
