@@ -30,16 +30,10 @@ RUN apk-install openssl-dev pcre-dev zlib-dev wget build-base && \
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
-# Add Nginx and Consul Template service
-ADD nginx.service /etc/service/nginx/run
-ADD consul-template.service /etc/service/consul-template/run
-
 # Add Nginx default config
 ADD config/nginx.conf /etc/nginx
 ADD config/default.conf /etc/nginx/conf.d
 
 # Expose HTTP and HTTPS ports
 EXPOSE 80 443
-
-# Run services located in /etc/service directory
-CMD ["s6-svscan", "-t0", "/etc/service"]
+CMD ["nginx", "-g", "daemon off;"]
