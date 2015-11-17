@@ -1,0 +1,12 @@
+#!/usr/bin/with-contenv sh
+set -e
+
+CONSUL_URL=${CONSUL_URL:-consul.service.consul:8500}
+CONSUL_KV_PATH=${CONSUL_KV_PATH:-/}
+
+if [ -n "$CONSUL_KV_PREFIX" ]; then
+    status=`fileconsul status --addr $CONSUL_URL --prefix $CONSUL_KV_PREFIX --basepath $CONSUL_KV_PATH`
+    if [ -n "$status" ]; then
+        pull=`fileconsul pull --addr $CONSUL_URL --prefix $CONSUL_KV_PREFIX --basepath $CONSUL_KV_PATH`
+    fi
+fi

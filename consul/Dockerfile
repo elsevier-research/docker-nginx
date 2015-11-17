@@ -16,3 +16,4 @@ RUN curl -Ls https://github.com/just-containers/s6-overlay/releases/download/v${
 ADD etc /etc
 
 ENTRYPOINT ["/init"]
+CMD ["nginx", "-g", "daemon off;"]
