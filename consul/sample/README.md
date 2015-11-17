@@ -17,7 +17,7 @@ First of all you have to install [Consul](https://www.consul.io/intro/getting-st
 Then you have to start Consul as an agent server on the docker host.
 
 ```
-consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul -ui-dir /usr/local/share/consul
+consul agent -server -bootstrap-expect 1 -data-dir /tmp/consul -ui-dir /usr/local/share/consul --client 0.0.0.0
 ```
 
 Then you can start the services :
