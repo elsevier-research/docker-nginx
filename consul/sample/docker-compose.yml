@@ -14,7 +14,7 @@ lb:
   ports:
     - 80:80
   volumes:
-    - ./templates:/etc/consul-templates
+    - ./etc/consul-template:/etc/consul-template
   # Change this section to point on your Consul
   environment:
     CONSUL_URL: localhost:8500
