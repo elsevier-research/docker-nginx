@@ -1,12 +1,15 @@
 #!/usr/bin/with-contenv sh
 set -e
+set +x
 
 CONSUL_URL=${CONSUL_URL:-consul.service.consul:8500}
-FILECONSUL_BASEPATH=${FILECONSUL_BASEPATH:-/}
 
-if [ -n "$FILECONSUL_PREFIX" ]; then
-    status=`fileconsul status --addr $CONSUL_URL --prefix $FILECONSUL_PREFIX --basepath $FILECONSUL_BASE_PATH`
+if [ -n "$FILECONSUL_PREFIX" -a -n "$FILECONSUL_BASEPATH" ]; then
+    status=`fileconsul status --addr $CONSUL_URL --prefix $FILECONSUL_PREFIX --basepath $FILECONSUL_BASEPATH 2>&1`
     if [ -n "$status" ]; then
-        pull=`fileconsul pull --addr $CONSUL_URL --prefix $FILECONSUL_PREFIX --basepath $FILECONSUL_BASE_PATH`
+        pull=`fileconsul pull --addr $CONSUL_URL --prefix $FILECONSUL_PREFIX --basepath $FILECONSUL_BASEPATH 2>&1`
+        if [ $? -eq 0 ]; then
+          nginx -s reload
+        fi
     fi
 fi
