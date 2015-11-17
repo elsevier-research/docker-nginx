@@ -73,6 +73,12 @@ Sometimes, it might be necessary to change the Nginx configuration dynamically f
 
 To do that we've built an [image](consul) based on [Consul](https://consul.io/) and [Consul template](https://github.com/hashicorp/consul-template)
 
+# Build
+
+This project is configured as an [automated build in Dockerhub](https://hub.docker.com/r/1science/nginx/). 
+
+Each branch give the related image tag.  
+
 # License
 
 All the code contained in this repository, unless explicitly stated, is
