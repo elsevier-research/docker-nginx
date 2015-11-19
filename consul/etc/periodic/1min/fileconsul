@@ -3,13 +3,20 @@ set -e
 set +x
 
 CONSUL_URL=${CONSUL_URL:-consul.service.consul:8500}
+FILECONSUL_DC=${FILECONSUL_DC:-local}
 
-if [ -n "$FILECONSUL_PREFIX" -a -n "$FILECONSUL_BASEPATH" ]; then
-    status=`fileconsul status --addr $CONSUL_URL --prefix $FILECONSUL_PREFIX --basepath $FILECONSUL_BASEPATH 2>&1`
-    if [ -n "$status" ]; then
-        pull=`fileconsul pull --addr $CONSUL_URL --prefix $FILECONSUL_PREFIX --basepath $FILECONSUL_BASEPATH 2>&1`
-        if [ $? -eq 0 ]; then
-          nginx -s reload
-        fi
+if [ -z "$FILECONSUL_PREFIX" -o -z "$FILECONSUL_BASEPATH" ]; then
+ exit 0
+fi
+
+# Check consul status
+status=`fileconsul status --addr $CONSUL_URL --prefix $FILECONSUL_PREFIX --dc $FILECONSUL_DC --basepath $FILECONSUL_BASEPATH 2>&1`
+
+if [ -n "$status" ]; then
+   # Pull changes
+    pull=`fileconsul pull --addr $CONSUL_URL --prefix $FILECONSUL_PREFIX --dc $FILECONSUL_DC --basepath $FILECONSUL_BASEPATH 2>&1`
+    if [ $? -eq 0 ]; then
+      nginx -s reload
     fi
 fi
+
