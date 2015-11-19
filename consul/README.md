@@ -1,3 +1,5 @@
+[![](https://badge.imagelayers.io/1science/nginx:consul.svg)](https://imagelayers.io/?images=1science/nginx:consul 'Get your own badge on imagelayers.io')
+
 # Consul Nginx image
 
 This image inherits from the ```1science/nginx``` image adding support to manage the  Nginx configuration through [Consul](https://consul.io/)
