@@ -20,7 +20,7 @@ docker run --name nginx-consul -v etc/consul-template:/etc/consul-template:ro -d
 
 ```
 
-or you create your own ```Dockerfile```:
+or you can create your own ```Dockerfile```:
 
 ```
 FROM 1science/nginx:consul
