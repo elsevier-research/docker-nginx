@@ -28,7 +28,7 @@ FROM 1science/nginx:consul
 ADD etc/consul-template /etc/consul-template
 ```
 
-### Fileconsul
+## Fileconsul
 
 The following example use [Fileconsul](https://github.com/foostan/fileconsul) to synchronize configuration files with Consul: 
 
