@@ -1,5 +1,5 @@
 #
-# Nginx image with Consul Template
+# Nginx image with Consul Template and Fileconsul
 #
 FROM 1science/nginx:1.9.6
 
