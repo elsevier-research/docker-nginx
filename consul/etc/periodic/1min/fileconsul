@@ -13,7 +13,7 @@ fi
 status=`fileconsul status --addr $CONSUL_URL --prefix $FILECONSUL_PREFIX --dc $FILECONSUL_DC --basepath $FILECONSUL_BASEPATH 2>&1`
 
 if [ -n "$status" ]; then
-   # Pull changes
+    # Pull changes
     pull=`fileconsul pull --addr $CONSUL_URL --prefix $FILECONSUL_PREFIX --dc $FILECONSUL_DC --basepath $FILECONSUL_BASEPATH 2>&1`
     if [ $? -eq 0 ]; then
       nginx -s reload
