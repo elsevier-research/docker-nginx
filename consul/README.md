@@ -41,7 +41,7 @@ docker run --name nginx-consul \
 -d 1science/nginx:consul
 ```
 
-This synchronize the values in the KV folder ```app``` in the local directory ```/app/etc```.
+This synchronize the configuration files in Consul defined in the KV folder ```app``` in the local directory ```/app/etc```, then [reload](etc/periodic/1min/fileconsul) the nginx process.
 
 # Load Balancing Sample
 
