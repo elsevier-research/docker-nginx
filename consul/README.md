@@ -37,7 +37,7 @@ docker run --name nginx-consul \
 -e CONSUL_URL=localhost:8500 \
 -e FILECONSUL_PREFIX=app \
 -e FILECONSUL_DC=local \
--e FILECONSUL_BASEPATH=/app/etc\
+-e FILECONSUL_BASEPATH=/app/etc \
 -d 1science/nginx:consul
 ```
 
