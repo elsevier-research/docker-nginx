@@ -12,7 +12,7 @@ RUN curl -Ls https://github.com/just-containers/s6-overlay/releases/download/v${
     curl -Ls http://dl.bintray.com/foostan/fileconsul/${FILECONSUL_VERSION}_linux_amd64.zip -o fileconsul.zip && unzip fileconsul.zip -d /usr/local/bin && \
     rm -f fileconsul.zip consul-template* && \
     echo -ne "- with `consul-template -v`" >> /root/.built && \
-    echo -ne "- with `fileconsul -v`" >> /root/.built
+    echo -ne "- with `fileconsul -v`\n" >> /root/.built
 
 # Add services configuration
 ADD etc /etc
