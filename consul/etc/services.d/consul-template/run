@@ -1,7 +1,12 @@
 #!/usr/bin/with-contenv sh
 set -e
 
-CONSUL_URL=${CONSUL_URL:-localhost:8500}
+if [ -n ${RUN_ON_AWS} ]; then
+    # Resolve the EC2 IP running a Consul Agent through API
+    CONSUL_URL=$(curl http://169.254.169.254/latest/meta-data/local-hostname)
+else
+    CONSUL_URL=${CONSUL_URL:-localhost:8500}
+fi
 
 if [ -d /etc/consul-template/conf ]; then
   exec consul-template \
