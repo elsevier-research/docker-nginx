@@ -1,11 +1,12 @@
 #!/usr/bin/with-contenv sh
 set -e
 
-if [ -n ${RUN_ON_AWS} ]; then
-    # Resolve the EC2 IP running a Consul Agent through API
-    CONSUL_URL=$(curl http://169.254.169.254/latest/meta-data/local-hostname)
-else
+if [ -z ${RUN_ON_AWS} ]; then
     CONSUL_URL=${CONSUL_URL:-localhost:8500}
+else
+    # Resolve the EC2 IP running a Consul Agent through API
+    # This a workaround for this issue : https://github.com/aws/amazon-ecs-agent/issues/185
+    CONSUL_URL=$(curl http://169.254.169.254/latest/meta-data/local-hostname)
 fi
 
 if [ -d /etc/consul-template/conf ]; then
