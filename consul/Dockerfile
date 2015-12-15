@@ -10,7 +10,7 @@ ENV S6_OVERLAY_VERSION=1.17.0.0 CONSUL_TEMPLATE_VERSION=0.11.0
 RUN apt-get update && \
     apt-get install -y curl unzip
 
-# Install S6 Overlay, Consul Template and Fileconsul
+# Install S6 Overlay and Consul Template
 RUN curl -Ls https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz | tar -xz -C / && \
     curl -Ls https://github.com/hashicorp/consul-template/releases/download/v${CONSUL_TEMPLATE_VERSION}/consul_template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip -o consul-template.zip && unzip consul-template.zip -d /usr/local/bin && \
     rm -f consul-template* && \
