@@ -1,77 +1,43 @@
-[![](https://badge.imagelayers.io/1science/nginx:latest.svg)](https://imagelayers.io/?images=1science/nginx:latest 'Get your own badge on imagelayers.io')
+[![](https://badge.imagelayers.io/1science/nginx:consul.svg)](https://imagelayers.io/?images=1science/nginx 'Get your own badge on imagelayers.io')
 
-# What is Nginx?
+# Consul Nginx image
 
-![logo](https://raw.githubusercontent.com/1science/docker-nginx/latest/logo.png)
+This image inherits from the ```nginx``` image adding support to manage the Nginx configuration through [Consul](https://consul.io/)
 
-Nginx (pronounced "engine-x") is an open source reverse proxy server for HTTP, HTTPS, SMTP, POP3, and IMAP protocols, as well as a load balancer, HTTP cache, and a web server (origin server). The nginx project started with a strong focus on high concurrency, high performance and low memory usage. It is licensed under the 2-clause BSD-like license and it runs on Linux, BSD variants, Mac OS X, Solaris, AIX, HP-UX, as well as on other *nix flavors. It also has a proof of concept port for Microsoft Window..
-
-> [wikipedia.org/wiki/Nginx](https://en.wikipedia.org/wiki/Nginx)
-
+It includes : 
+  - [S6 Overlay](https://github.com/just-containers/s6-overlay) to properly manage multiple services in one container
+  - [Consul template](https://github.com/hashicorp/consul-template) to manage dynamic configuration based on Consul
 
 # Usage
 
-## Hosting some simple static content
+**Consul Template**
+
+The following example mount the [Consul template](https://github.com/hashicorp/consul-template) configuration in the container: 
 
 ```
-docker run --name some-nginx -v /some/content:/usr/share/nginx/html:ro -d 1science/nginx
-```
-
-Alternatively, a simple `Dockerfile` can be used to generate a new image that includes the necessary content (which is a much cleaner solution than the bind mount above):
+docker run --name nginx-consul -v etc/consul-template:/etc/consul-template:ro -d 1science/nginx:consul
 
 ```
-FROM 1science/nginx
-COPY static-html-directory /usr/share/nginx/html
-```
 
-Place this file in the same directory as your directory of content ("static-html-directory"), run `docker build -t some-content-nginx .`, then start your container:
+or you can create your own ```Dockerfile```:
 
 ```
-docker run --name some-nginx -d some-content-nginx
+FROM 1science/nginx:consul
+
+ADD etc/consul-template /etc/consul-template
 ```
 
-## Exposing the port
+# Variants
 
-```
-docker run --name some-nginx -d -p 8080:80 some-content-nginx
-```
+An image based on the lightweight [Alpine Linux](https://alpinelinux.org/) distribution is available with the tag ```{version}-alpine```.
 
-Then you can hit `http://localhost:8080` or `http://host-ip:8080` in your browser.
+# Load Balancing Sample
 
-## Complex configuration
+The [sample application](sample) demonstrate how to achieve load balancing with Nginx, [Consul](https://www.consul.io/) and [Registrator](http://progrium.com/blog/2014/09/10/automatic-docker-service-announcement-with-registrator/).
 
-```
-docker run --name some-nginx -v /some/nginx.conf:/etc/nginx/nginx.conf:ro -d 1science/nginx
-```
+# Thanks
 
-For information on the syntax of the Nginx configuration files, see [the official documentation](http://nginx.org/en/docs/) (specifically the [Beginner's Guide](http://nginx.org/en/docs/beginners_guide.html#conf_structure)).
-
-Be sure to include `daemon off;` in your custom configuration to ensure that Nginx stays in the foreground so that Docker can track the process properly (otherwise your container will stop immediately after starting)!
-
-If you wish to adapt the default configuration, use something like the following to copy it from a running Nginx container:
-
-```
-docker cp some-nginx:/etc/nginx/nginx.conf /some/nginx.conf
-```
-
-As above, this can also be accomplished more cleanly using a simple `Dockerfile`:
-
-```
-FROM 1science/nginx
-COPY nginx.conf /etc/nginx/nginx.conf
-```
-
-Then, build with `docker build -t some-custom-nginx .` and run:
-
-```
-docker run --name some-nginx -d some-custom-nginx
-```
-
-## Dynamic configuration with Consul
-
-Sometimes, it might be necessary to change the Nginx configuration dynamically for example to add hosts to achieve load balancing.
-
-To do that we've built an [image](consul) based on [Consul](https://consul.io/) and [Consul template](https://github.com/hashicorp/consul-template)
+We would like to thanks [John Regan](https://github.com/jprjr) for his work on the [S6 system init](http://blog.tutum.co/2015/05/20/s6-made-easy-with-the-s6-overlay/) which is just awesome.
 
 # Build
 
