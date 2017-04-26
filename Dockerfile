@@ -1,7 +1,7 @@
 #
 # Nginx image with Consul Template
 #
-FROM nginx:1.11
+FROM nginx:1.13
 MAINTAINER 1science Devops Team <devops@1science.org>
 
 RUN apt-get update && apt-get install -y curl unzip less vim
