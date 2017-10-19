@@ -47,7 +47,6 @@ Each branch give the related image tag.
 
 # License
 
-All the code contained in this repository, unless explicitly stated, is
-licensed under ISC license.
+All the code contained in this repository, unless explicitly stated, is licensed under ISC license.
 
 A copy of the license can be found inside the [LICENSE](LICENSE) file.
