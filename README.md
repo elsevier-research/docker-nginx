@@ -1,3 +1,5 @@
+DEPRECATED
+
 [![](https://badge.imagelayers.io/1science/nginx:consul.svg)](https://imagelayers.io/?images=1science/nginx 'Get your own badge on imagelayers.io')
 
 # Consul Nginx image
